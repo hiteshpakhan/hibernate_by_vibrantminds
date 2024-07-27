@@ -1,10 +1,16 @@
 package com.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -13,8 +19,36 @@ public class Student {
 	private int sid;
 	private String sname;
 	private String scity;
+	
 	@Column(columnDefinition = ("double(5,2)"))
 	private double spercentage;
+	
+	@OneToMany(mappedBy = "student")
+	private List<Gift> gifts = new LinkedList();
+	
+	@ManyToOne	
+	private Department department;
+	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	public List<Gift> getGifts() {
+		return gifts;
+	}
+	public void setGifts(List<Gift> gifts) {
+		this.gifts = gifts;
+	}
+	@OneToOne
+	private Laptop laptop;	
+	public Laptop getLaptop() {
+		return laptop;
+	}
+	public void setLaptop(Laptop laptop) {
+		this.laptop = laptop;
+	}
 	@Override
 	public String toString() {
 		return "Student [sid=" + sid + ", sname=" + sname + ", scity=" + scity + ", spercentage=" + spercentage + "]";
