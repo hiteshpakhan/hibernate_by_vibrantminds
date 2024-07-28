@@ -20,7 +20,7 @@ public class App {
 		Session session = HBUtils.sf.openSession();
 		Transaction tx = session.beginTransaction();
 	
-		
+		//this is where you can act of your own
 		
 		tx.commit();
 		session.close();
